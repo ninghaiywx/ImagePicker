@@ -53,22 +53,7 @@ public class ImagePickActivity extends AppCompatActivity {
 
             initPopupWindow();
 
-            //回调每个图片点击的事件
-            adapter.setOnImageClickListener(new ImageAdapter.OnImageClickListener() {
-                @Override
-                public void onImageClick(boolean isSelected,int selectedCount) {
-                    dirButton.setText(selectedCount+"/"+mPickCount);
-                    if(selectedCount==0){
-                        dirButton.setClickable(false);
-                        dirButton.setEnabled(false);
-                        dirButton.setBackgroundColor(Color.parseColor("#CACACA"));
-                    }else {
-                        dirButton.setClickable(true);
-                        dirButton.setEnabled(true);
-                        dirButton.setBackgroundColor(Color.parseColor("#4FA95D"));
-                    }
-                }
-            });
+            refreshAdapterEvent();
 
             //设置按钮点击事件
             dirButton.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +69,28 @@ public class ImagePickActivity extends AppCompatActivity {
     };
 
     /**
+     * 重新绑定适配器监听
+     */
+    private void refreshAdapterEvent() {
+        //回调每个图片点击的事件
+        adapter.setOnImageClickListener(new ImageAdapter.OnImageClickListener() {
+            @Override
+            public void onImageClick(boolean isSelected,int selectedCount) {
+                dirButton.setText(selectedCount+"/"+mPickCount);
+                if(selectedCount==0){
+                    dirButton.setClickable(false);
+                    dirButton.setEnabled(false);
+                    dirButton.setBackgroundColor(Color.parseColor("#CACACA"));
+                }else {
+                    dirButton.setClickable(true);
+                    dirButton.setEnabled(true);
+                    dirButton.setBackgroundColor(Color.parseColor("#4FA95D"));
+                }
+            }
+        });
+    }
+
+    /**
      * 初始化popupwindow
      */
     private void initPopupWindow() {
@@ -97,8 +104,15 @@ public class ImagePickActivity extends AppCompatActivity {
         popupWindow.setOnDirSelectedListener(new DirPopupWindow.OnDirSelectedListener() {
             @Override
             public void onSelected(FolderBean bean) {
+                dirButton.setText("0/"+mPickCount);
+                dirButton.setBackgroundColor(Color.parseColor("#CACACA"));
+                dirButton.setClickable(false);
+                dirButton.setEnabled(false);
+
                 mCurrentDir=new File(bean.getDir());
                 dataToView();
+                //重新绑定适配器点击监听
+                refreshAdapterEvent();
                 popupWindow.dismiss();
             }
         });
