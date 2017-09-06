@@ -21,7 +21,8 @@
         switch (requestCode){
             case PickFlag.PICK_PICTURE:
                 if(resultCode==RESULT_OK){
-                    List<String>list=data.getStringArrayListExtra(PickFlag.PICK_LIST);//返回一个图片路径的列表，存储着这次选择的图片的文件路径
+                    List<String>list=data.getStringArrayListExtra(PickFlag.PICK_LIST);
+                    //返回一个图片路径的列表，存储着这次选择的图片的文件路径
                     Toast.makeText(this,list.size()+"",Toast.LENGTH_SHORT).show();
                 }
                 break;
