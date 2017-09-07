@@ -120,7 +120,7 @@ bintray {
         //这里的repo值必须要和你创建Maven仓库的时候的名字一样
         repo = "ywxlibrary"
         //发布到JCenter上的项目名字
-        name = libName
+        name = "ImagePick"
         //项目描述
         desc = '一个图片选择器'
         websiteUrl = siteUrl

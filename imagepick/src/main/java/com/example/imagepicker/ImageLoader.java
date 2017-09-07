@@ -25,24 +25,20 @@ public class ImageLoader {
     }
 
     private static ImageLoader mInstance;
-
     //图片缓存
     private LruCache<String,Bitmap>mCache;
-
     //线程池
     private ExecutorService mThreadPool;
-    private final static int DEFAULT_THREAD_COUNT=1;
     //队列调度方式
     private TYPE mType= TYPE.LIFO;
-
     //任务队列
     private LinkedList<Runnable> mTaskQueue;
-
     //后台轮询线程
     private Thread mPoolThread;
     private Handler mPoolThreadHandler;
     private Handler mUIHandler;
 
+    //信号量
     private Semaphore mSemaphoreThreadHandler=new Semaphore(0);
     private Semaphore mSemaphoreThread;
 
