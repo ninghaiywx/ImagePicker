@@ -5,7 +5,7 @@
 ![](demo.gif)
 
 ### Gradle引入
-<pre>compile 'me.ywx.ImagePick:imagepick:1.0.0'</pre>
+<pre>compile 'me.ywx.ImagePick:imagepick:1.0.1'</pre>
 
 ## 使用方法
 #### 1.在配置文件申明权限
