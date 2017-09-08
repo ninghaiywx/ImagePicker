@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.util.LruCache;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -130,20 +131,21 @@ public class ImageLoader {
             mUIHandler=new Handler(){
                 @Override
                 public void handleMessage(Message msg) {
-                    //获取得到的图片设置在imageview上
+                    //获取得到的图片设置在ImageView上
                     ImageBeanHolder imageBean= (ImageBeanHolder) msg.obj;
                     Bitmap bm=imageBean.bitmap;
                     ImageView imageView=imageBean.imageView;
                     String path=imageBean.path;
 
-                    if(imageView.getTag().toString().equals(path)){
+                    //防止快速滚动时的显示错乱
+                    if(imageView.getTag().toString().equals(path)) {
                         imageView.setImageBitmap(bm);
                     }
                 }
             };
         }
 
-        //现根据path到缓存中找bitmap
+        //先根据path到缓存中找bitmap
         Bitmap bm=getBitmapFromCache(path);
 
         //如果从内存中找到了图片

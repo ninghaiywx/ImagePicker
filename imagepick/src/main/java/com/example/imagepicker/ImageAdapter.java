@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class ImageAdapter extends BaseAdapter {
         private ArrayList<String> selectedImg=new ArrayList<>();
@@ -70,7 +69,7 @@ public class ImageAdapter extends BaseAdapter {
             }
             viewHolder.img.setColorFilter(null);
 
-            ImageLoader.getInstance(3, ImageLoader.TYPE.LIFO).loadImage(dirPath+"/"+data.get(position),viewHolder.img);
+            ImageLoader.getInstance(5, ImageLoader.TYPE.LIFO).loadImage(dirPath+"/"+data.get(position),viewHolder.img);
 
             final ViewHolder finalViewHolder = viewHolder;
             viewHolder.img.setOnClickListener(new View.OnClickListener() {
